@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz 1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #F5EEDD;
+    }
+
+    input {
+      margin: 5px 0;
+      padding: 8px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 8px 16px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h2>BMI</h2>
+  <label>Weight (kg):</label><br>
+  <input type="number" id="W" placeholder="e.g. 60"><br>
+
+  <label>Height (cm):</label><br>
+  <input type="number" id="H" placeholder="e.g. 170"><br>
+
+  <button onclick="bmicalc()">Calculate</button>
+
+  <div id="result"></div>
+
+  <script>
+    function bmicalc() {
+      weight = Math.abs(+document.getElementById("W").value)
+      height = Math.abs(+document.getElementById("H").value) / 100
+      document.getElementById("result").innerText = ""
+  
+      if (weight && height) {
+        bmi = weight / (height * height)
+        bmi = Math.round(bmi * 10) / 10
+        bodytype = ""
+  
+        if (bmi < 18.5) {
+          bodytype = "underweight"
+        } else if (bmi < 25) {
+          bodytype = "normal"
+        } else if (bmi < 30) {
+          bodytype = "overweight"
+        } else {
+          bodytype = "obese"
+        }
+  
+        document.getElementById("result").innerText = "your BMI is " + bmi + " (" + bodytype + ")"
+      } else {
+        document.getElementById("result").innerText = "enter numbers"
+      }
+    }
+  </script>     
+</body>
+</html>
